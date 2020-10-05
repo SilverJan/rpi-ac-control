@@ -19,10 +19,13 @@ def test_ac_control_service_enabled_running():
 
 def test_ac_control_service_alive():
     (rc, output) = run_in_shell(
-        f"curl http://0.0.0.0:5000/version")
-    assert rc == 200
-    assert output == "1.0.0"
+        f"curl -f http://0.0.0.0:5000/version")
+    assert "1.0.0" in output
 
+def test_ac_control_service_exit_works():
+    (rc, output) = run_in_shell(
+        f"curl -f http://0.0.0.0:5000/not-there")
+    assert "404" in output
 
 @pytest.mark.parametrize(
     'directory', ["/opt/rpi-ac-control", "/var/log/rpi-ac-control"])
