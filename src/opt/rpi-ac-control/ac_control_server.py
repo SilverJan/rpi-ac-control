@@ -38,13 +38,13 @@ class AcControl(Resource):
             temperature = 25
             fanMode = 'Silent'
 
-            if 'temperature' in request.args.keys:
+            if request.args.get('temperature'):
                 temperature = int(request.args.get('temperature'))
                 if temperature < 18 or temperature > 30:
                     return f"invalid temperature: {temperature}", 400
                 logger.info(f"setting AC to {temperature} degrees")
 
-            if 'fan' in request.args.keys:
+            if request.args.get('fan'):
                 fanMode = request.args.get('fan')
                 if fanMode not in ['Silent', 'Speed1', 'Speed2', 'Speed3']:
                     return f"invalid fan setting: {fanMode}", 400

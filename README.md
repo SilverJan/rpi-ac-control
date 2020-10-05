@@ -28,19 +28,25 @@ or
 	./create_deb.sh
 	sudo gdebi dist/rpi-ac-control_1.0.0_all.deb
 
-## How to monitor it
+## How to use the AC control
 
-Two services are installed as part of the package installation:
+Once the service is started, you can control your AC by calling the following endpoints:
 
-TBD
+	http://<ip-address>:5000/turnOn
+	http://<ip-address>:5000/turnOff
+	http://<ip-address>:5000/custom?temperature=25&fan=Silent
+
+Example via curl:
+
+	curl -f http://<ip-address>:5000/turn-on
+
+## How to monitor / debug service
+
+To verify the functionality of the service, check
+
+	sudo systemctl status ac-control.service
 
 Log data is created in `/var/log/ac-control/`
-
-## How to debug issues
-
-Run the following commands to get debug information on both services
-
-TBD
 
 ## How to test
 
