@@ -17,7 +17,7 @@ def test_directories_exist(directory):
 
 
 @pytest.mark.parametrize(
-    'file', ["/opt/rpi-ac-control/tbd.py", "/var/log/rpi-ac-control/tbd"])
+    'file', ["/opt/rpi-ac-control/rpi-ac-control.py", "/var/log/rpi-ac-control/ac-control.log"])
 def test_files_exist(file):
     assert is_file(file)
     assert os.path.getsize(file) > 0

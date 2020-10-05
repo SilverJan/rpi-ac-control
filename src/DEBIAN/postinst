@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# TODO: Find a way to install this via apt/control
+pip3 install flask flask_restful
+
 mkdir -p /var/log/rpi-ac-control
 
 exit 0
