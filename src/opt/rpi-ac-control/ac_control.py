@@ -45,6 +45,7 @@ if __name__ == '__main__':
     if args.turnOff:
         logger.info("turn AC off")
         HVAC.power_off()
+        sys.exit()
 
     if args.turnOn:
         logger.info(f"turn on AC")
