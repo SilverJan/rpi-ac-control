@@ -43,9 +43,11 @@ if __name__ == '__main__':
     HVAC = Mitsubishi(22, LogLevel.ErrorsOnly)
 
     if args.turnOff:
+        logger.info("turn AC off")
         HVAC.power_off()
 
     if args.turnOn:
+        logger.info(f"turn on AC")
         HVAC.send_command(
             climate_mode=ClimateMode.Cold,
             temperature=25,
@@ -59,6 +61,7 @@ if __name__ == '__main__':
         sys.exit()
 
     if args.temperature:
+        logger.info(f"set AC to {args.temperature}")
         HVAC.send_command(
             climate_mode=ClimateMode.Cold,
             temperature=args.temperature,
