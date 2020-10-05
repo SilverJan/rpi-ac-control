@@ -19,7 +19,7 @@ def test_ac_control_service_enabled_running():
 
 def test_ac_control_service_alive():
     (rc, output) = run_in_shell(
-        f"curl 0.0.0.0:5000/version")
+        f"curl http://0.0.0.0:5000/version")
     assert rc == 200
     assert output == "1.0.0"
 
@@ -31,7 +31,7 @@ def test_directories_exist(directory):
 
 
 @pytest.mark.parametrize(
-    'file', ["/opt/rpi-ac-control/rpi-ac-control.py", "/var/log/rpi-ac-control/ac-control.log"])
+    'file', ["/opt/rpi-ac-control/ac_control_server.py", "/var/log/rpi-ac-control/ac-control.log"])
 def test_files_exist(file):
     assert is_file(file)
     assert os.path.getsize(file) > 0
