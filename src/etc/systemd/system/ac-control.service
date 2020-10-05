@@ -1,0 +1,17 @@
+[Unit]
+Description=Start AC control service
+
+[Service]
+# Run permission service
+ExecStart=/usr/bin/python3 /opt/rpi-ac-control/ac_control_server.py
+
+# keep process after user logs off
+RemainAfterExit=false
+
+# Use syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=ac-control
+
+[Install]
+WantedBy=default.target

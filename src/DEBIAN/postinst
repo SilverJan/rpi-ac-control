@@ -6,4 +6,8 @@ pip3 install flask flask_restful
 
 mkdir -p /var/log/rpi-ac-control
 
+systemctl daemon-reload
+systemctl enable ac-control.service
+systemctl restart ac-control.service
+
 exit 0

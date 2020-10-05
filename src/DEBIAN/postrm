@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+#pip3 uninstall -y flask flask_restful
+
 systemctl daemon-reload
 
 exit 0

@@ -4,16 +4,24 @@ from flask_restful import Resource, Api
 from hvac_ircontrol.ir_sender import LogLevel
 from hvac_ircontrol.mitsubishi import Mitsubishi, ClimateMode, FanMode, VanneVerticalMode, VanneHorizontalMode, ISeeMode, AreaMode, PowerfulMode
 
+import utils
+
 app = Flask(__name__)
 api = Api(app)
 
 
 class AcControl(Resource):
     def get(self, cmd):
+        if cmd == "version":
+            return "1.0.0", 200
+
         if cmd == "turnOff":
             ac.power_off()
+            logger.info("turning AC off")
             return 200
-        elif cmd == "turnOn":
+
+        if cmd == "turnOn":
+            logger.info("turning AC on")
             ac.send_command(
                 climate_mode=ClimateMode.Cold,
                 temperature=25,
@@ -25,10 +33,12 @@ class AcControl(Resource):
                 powerful=PowerfulMode.PowerfulOff
             )
             return 200
-        elif cmd == "setTemp":
+
+        if cmd == "setTemp":
             temperature = int(request.args.get('temperature'))
             if temperature < 18 or temperature > 30:
                 return f"invalid temperature: {temperature}", 400
+            logger.info(f"setting AC to {temperature} degrees")
             ac.send_command(
                 climate_mode=ClimateMode.Cold,
                 temperature=int(temperature),
@@ -47,5 +57,6 @@ class AcControl(Resource):
 api.add_resource(AcControl, '/<string:cmd>')
 
 if __name__ == '__main__':
+    logger = utils.get_logger('ac-control')
     ac = Mitsubishi(22, LogLevel.ErrorsOnly)
     app.run(host='0.0.0.0', port=5000, debug=True)
