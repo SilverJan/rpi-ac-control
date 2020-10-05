@@ -1,0 +1,10 @@
+Package: %PACKAGE_NAME%
+Version: %PACKAGE_VERSION%
+Section: base
+Priority: optional
+Architecture: all
+Essential: no
+Depends: python3, python3-pip
+Installed-Size: 1000
+Maintainer: Jan Bissinger
+Description: AC control tool for Raspberry Pi

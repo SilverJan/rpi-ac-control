@@ -1,0 +1,4 @@
+*.deb
+dist
+dist_src
+__pycache__

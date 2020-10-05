@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+mkdir -p /var/log/rpi-ac-control
+
+exit 0
