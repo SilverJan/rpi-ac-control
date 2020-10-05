@@ -9,6 +9,7 @@ from hvac_ircontrol.mitsubishi import Mitsubishi, ClimateMode, FanMode, VanneVer
 
 logger = utils.get_logger("ac-control")
 
+
 def handleArguments() -> None:
     """Handles CLI arguments and saves them globally"""
     parser = argparse.ArgumentParser(
@@ -31,6 +32,7 @@ def handleArguments() -> None:
 
     logger.debug("Running with the following arguments: {}".format(args))
 
+
 if __name__ == '__main__':
     handleArguments()
 
@@ -39,7 +41,7 @@ if __name__ == '__main__':
 
     if args.turnOff:
         HVAC.power_off()
-    
+
     if args.turnOn:
         HVAC.send_command(
             climate_mode=ClimateMode.Cold,
