@@ -16,9 +16,9 @@ def get_logger(name):
 
         log_formatter = logging.Formatter("%(asctime)s -- %(message)s")
 
-        sys_handler = logging.FileHandler('/var/log/syslog')
-        sys_handler.setFormatter(log_formatter)
-        logger.addHandler(sys_handler)
+        #sys_handler = logging.FileHandler('/var/log/syslog')
+        #sys_handler.setFormatter(log_formatter)
+        #logger.addHandler(sys_handler)
 
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(log_formatter)
