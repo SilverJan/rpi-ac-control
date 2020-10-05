@@ -2,7 +2,8 @@
 Description=Start AC control service
 
 [Service]
-# Run permission service
+# TODO: find solution for this env setting
+Environment="PYTHONPATH=/opt/rpi-ac-control/hvac_ircontrol"
 ExecStart=/usr/bin/python3 /opt/rpi-ac-control/ac_control_server.py
 
 # keep process after user logs off
