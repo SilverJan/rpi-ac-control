@@ -3,6 +3,7 @@
 import argparse
 import utils
 import logging
+import sys
 
 from hvac_ircontrol.ir_sender import LogLevel
 from hvac_ircontrol.mitsubishi import Mitsubishi, ClimateMode, FanMode, VanneVerticalMode, VanneHorizontalMode, ISeeMode, AreaMode, PowerfulMode
@@ -55,7 +56,8 @@ if __name__ == '__main__':
             area_mode=AreaMode.Full,
             powerful=PowerfulMode.PowerfulOff
         )
-        
+        sys.exit()
+
     if args.temperature:
         HVAC.send_command(
             climate_mode=ClimateMode.Cold,
@@ -67,3 +69,4 @@ if __name__ == '__main__':
             area_mode=AreaMode.Full,
             powerful=PowerfulMode.PowerfulOff
         )
+        sys.exit()
