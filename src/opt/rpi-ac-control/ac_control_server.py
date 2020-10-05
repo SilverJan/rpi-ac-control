@@ -25,7 +25,7 @@ class AcControl(Resource):
             ac.send_command(
                 climate_mode=ClimateMode.Cold,
                 temperature=25,
-                fan_mode=FanMode.Speed1,
+                fan_mode=FanMode.Silent,
                 vanne_vertical_mode=VanneVerticalMode.Top,
                 vanne_horizontal_mode=VanneHorizontalMode.NotSet,
                 isee_mode=ISeeMode.ISeeOn,
@@ -34,15 +34,26 @@ class AcControl(Resource):
             )
             return 200
 
-        if cmd == "setTemp":
-            temperature = int(request.args.get('temperature'))
-            if temperature < 18 or temperature > 30:
-                return f"invalid temperature: {temperature}", 400
-            logger.info(f"setting AC to {temperature} degrees")
+        if cmd == "custom":
+            temperature = 25
+            fanMode = 'Silent'
+
+            if 'temperature' in request.args.keys:
+                temperature = int(request.args.get('temperature'))
+                if temperature < 18 or temperature > 30:
+                    return f"invalid temperature: {temperature}", 400
+                logger.info(f"setting AC to {temperature} degrees")
+
+            if 'fan' in request.args.keys:
+                fanMode = request.args.get('fan')
+                if fanMode not in ['Silent', 'Speed1', 'Speed2', 'Speed3']:
+                    return f"invalid fan setting: {fanMode}", 400
+                logger.info(f"setting AC to '{fanMode}' mode")
+
             ac.send_command(
                 climate_mode=ClimateMode.Cold,
-                temperature=int(temperature),
-                fan_mode=FanMode.Speed1,
+                temperature=temperature,
+                fan_mode=getattr(FanMode, fanMode),
                 vanne_vertical_mode=VanneVerticalMode.Top,
                 vanne_horizontal_mode=VanneHorizontalMode.NotSet,
                 isee_mode=ISeeMode.ISeeOn,
@@ -50,6 +61,7 @@ class AcControl(Resource):
                 powerful=PowerfulMode.PowerfulOff
             )
             return 200
+
         else:
             return "command not known", 404
 

@@ -79,6 +79,7 @@ class FanMode:
     Speed1 = 0b00000001         # 0x01      0000 0001        1
     Speed2 = 0b00000010         # 0x02      0000 0010        2
     Speed3 = 0b00000011         # 0x03      0000 0011        3
+    Silent = 0b00000101         # 0x05      0000 0101        5
     Auto = 0b10000000           # 0x80      1000 0000      128
 
 class VanneVerticalMode:
