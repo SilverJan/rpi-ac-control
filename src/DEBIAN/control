@@ -4,7 +4,7 @@ Section: base
 Priority: optional
 Architecture: all
 Essential: no
-Depends: python3, python3-pip, python3-pigpio
+Depends: python3, python3-pip, python3-pigpio, gdebi-core, python3-pytest
 Installed-Size: 1000
 Maintainer: Jan Bissinger
 Description: AC control tool for Raspberry Pi

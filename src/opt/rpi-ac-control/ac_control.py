@@ -37,13 +37,17 @@ if __name__ == '__main__':
     # instantiate AC object
     HVAC = Mitsubishi(22, LogLevel.ErrorsOnly)
 
-    HVAC.send_command(
-        climate_mode=ClimateMode.Cold,
-        temperature=18,
-        fan_mode=FanMode.Auto,
-        vanne_vertical_mode=VanneVerticalMode.Auto,
-        vanne_horizontal_mode=VanneHorizontalMode.NotSet,
-        isee_mode=ISeeMode.ISeeOn,
-        area_mode=AreaMode.Full,
-        powerful=PowerfulMode.PowerfulOn
-    )
+    if args.turnOff:
+        HVAC.power_off()
+    
+    if args.turnOn:
+        HVAC.send_command(
+            climate_mode=ClimateMode.Cold,
+            temperature=25,
+            fan_mode=FanMode.Auto,
+            vanne_vertical_mode=VanneVerticalMode.Top,
+            vanne_horizontal_mode=VanneHorizontalMode.NotSet,
+            isee_mode=ISeeMode.ISeeOn,
+            area_mode=AreaMode.Full,
+            powerful=PowerfulMode.PowerfulOff
+        )
