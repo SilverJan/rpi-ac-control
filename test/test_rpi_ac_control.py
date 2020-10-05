@@ -24,8 +24,8 @@ def test_ac_control_service_alive():
 
 def test_ac_control_service_exit_works():
     (rc, output) = run_in_shell(
-        f"curl -f http://0.0.0.0:5000/not-there")
-    assert "404" in output[0]
+        f"curl http://0.0.0.0:5000/not-there")
+    assert "command not known" in output[0]
 
 @pytest.mark.parametrize(
     'directory', ["/opt/rpi-ac-control", "/var/log/rpi-ac-control"])
