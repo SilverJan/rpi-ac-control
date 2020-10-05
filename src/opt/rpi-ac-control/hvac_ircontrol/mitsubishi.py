@@ -174,7 +174,7 @@ class Mitsubishi:
             21,
             FanMode.Auto,
             VanneVerticalMode.Auto,
-            VanneHorizontalMode.Swing,
+            VanneHorizontalMode.NotSet,
             ISeeMode.ISeeOff,
             AreaMode.NotSet,
             None,
@@ -207,7 +207,7 @@ class Mitsubishi:
             start_time,
             end_time,
             powerful,
-            PowerMode.PowerOff) # change again
+            PowerMode.PowerOn)
 
     def __log(self, min_log_level, message):
         if min_log_level <= self.log_level:
