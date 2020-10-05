@@ -18,7 +18,9 @@ def handleArguments() -> None:
     parser.add_argument('--turn-off', dest='turnOff', default=False, action='store_true',
                         help='turn off AC')
     parser.add_argument('--turn-on', dest='turnOn', default=False, action='store_true',
-                        help='turn off AC')
+                        help='turn on AC with default values')
+    parser.add_argument('--temp', dest='temperature', default=25, type=int,
+                        help='define temperature')
     parser.add_argument('--debug',
                         dest='debug', default=False, action='store_true',
                         help='turn debug mode on (default: False)')
@@ -46,6 +48,18 @@ if __name__ == '__main__':
         HVAC.send_command(
             climate_mode=ClimateMode.Cold,
             temperature=25,
+            fan_mode=FanMode.Speed1,
+            vanne_vertical_mode=VanneVerticalMode.Top,
+            vanne_horizontal_mode=VanneHorizontalMode.NotSet,
+            isee_mode=ISeeMode.ISeeOn,
+            area_mode=AreaMode.Full,
+            powerful=PowerfulMode.PowerfulOff
+        )
+        
+    if args.temperature:
+        HVAC.send_command(
+            climate_mode=ClimateMode.Cold,
+            temperature=args.temperature,
             fan_mode=FanMode.Speed1,
             vanne_vertical_mode=VanneVerticalMode.Top,
             vanne_horizontal_mode=VanneHorizontalMode.NotSet,
