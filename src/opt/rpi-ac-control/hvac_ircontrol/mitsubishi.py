@@ -207,7 +207,7 @@ class Mitsubishi:
             start_time,
             end_time,
             powerful,
-            PowerMode.PowerOn)
+            PowerMode.PowerOff)
 
     def __log(self, min_log_level, message):
         if min_log_level <= self.log_level:

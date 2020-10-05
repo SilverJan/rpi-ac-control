@@ -46,7 +46,7 @@ if __name__ == '__main__':
         HVAC.send_command(
             climate_mode=ClimateMode.Cold,
             temperature=25,
-            fan_mode=FanMode.Auto,
+            fan_mode=FanMode.Speed1,
             vanne_vertical_mode=VanneVerticalMode.Top,
             vanne_horizontal_mode=VanneHorizontalMode.NotSet,
             isee_mode=ISeeMode.ISeeOn,
