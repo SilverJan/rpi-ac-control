@@ -35,7 +35,7 @@ if __name__ == '__main__':
     handleArguments()
 
     # instantiate AC object
-    HVAC = Mitsubishi(23, LogLevel.ErrorsOnly)
+    HVAC = Mitsubishi(22, LogLevel.ErrorsOnly)
 
     HVAC.send_command(
         climate_mode=ClimateMode.Cold,
