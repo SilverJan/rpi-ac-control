@@ -170,26 +170,26 @@ class Mitsubishi:
         power_off
         """
         self.__send_command(
-            ClimateMode.Auto,
-            21,
-            FanMode.Auto,
-            VanneVerticalMode.Auto,
+            ClimateMode.Cold,
+            25,
+            FanMode.Speed1,
+            VanneVerticalMode.Top,
             VanneHorizontalMode.NotSet,
-            ISeeMode.ISeeOff,
-            AreaMode.NotSet,
+            ISeeMode.ISeeOn,
+            AreaMode.Full,
             None,
             None,
             PowerfulMode.PowerfulOff,
             PowerMode.PowerOff)
 
     def send_command(self,
-                     climate_mode=ClimateMode.Auto,
-                     temperature=21,
-                     fan_mode=FanMode.Auto,
-                     vanne_vertical_mode=VanneVerticalMode.Auto,
+                     climate_mode=ClimateMode.Cold,
+                     temperature=25,
+                     fan_mode=FanMode.Speed1,
+                     vanne_vertical_mode=VanneVerticalMode.Top,
                      vanne_horizontal_mode=VanneHorizontalMode.NotSet,
-                     isee_mode=ISeeMode.ISeeOff,
-                     area_mode=AreaMode.NotSet,
+                     isee_mode=ISeeMode.ISeeOn,
+                     area_mode=AreaMode.Full,
                      start_time=None,
                      end_time=None,
                      powerful=PowerfulMode.PowerfulOff):
