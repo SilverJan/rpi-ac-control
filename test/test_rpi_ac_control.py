@@ -28,6 +28,11 @@ def test_ac_control_service_alive():
         f"curl -f http://0.0.0.0:5000/version")
     assert "1.0.0" in output[0]
 
+def test_ngrok_url_available():
+    (rc, output) = run_in_shell(
+        f"curl -f http://0.0.0.0:5000/getNgrokUrl")
+    assert "http" in output[0]
+
 
 def test_ac_control_service_exit_works():
     (rc, output) = run_in_shell(
