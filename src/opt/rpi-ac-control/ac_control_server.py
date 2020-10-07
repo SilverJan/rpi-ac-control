@@ -15,12 +15,12 @@ class AcControl(Resource):
         if cmd == "version":
             return "1.0.0", 200
 
-        if cmd == "turnOff":
+        if cmd == "turnOff" or cmd == "turnoff":
             ac.power_off()
             logger.info("turning AC off")
             return 200
 
-        if cmd == "turnOn":
+        if cmd == "turnOn" or cmd == "turnon":
             logger.info("turning AC on")
             ac.send_command(
                 climate_mode=ClimateMode.Cold,
