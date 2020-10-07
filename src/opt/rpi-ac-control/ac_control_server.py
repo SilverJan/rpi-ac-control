@@ -20,7 +20,7 @@ class AcControl(Resource):
         if cmd == "getNgrokUrl":
             logger.info("getting ngrok URL")
             url = subprocess.run(
-                "curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[] | select(.name == \"http\") | .public_url'", shell=True, capture_output=True).stdout.decode('utf-8')
+                "curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[] | select(.name == \"http\") | .public_url'", shell=True, capture_output=True).stdout.decode('utf-8').replace("\n", "").replace("\"", "")
             if url:
                 return url, 200
             else:
