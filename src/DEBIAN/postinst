@@ -10,4 +10,15 @@ systemctl daemon-reload
 systemctl enable ac-control.service
 systemctl restart ac-control.service
 
+# Setup ngrok
+if [ ! -f /opt/ngrok/ngrok ]
+    echo "Installing ngrok"
+    mkdir -p /opt/ngrok/
+    wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip -O /tmp/ngrok-zip
+    unzip /tmp/ngrok-zip -d /opt/ngrok/
+fi
+
+systemctl enable ngrok.service
+systemctl restart ngrok.service
+
 exit 0

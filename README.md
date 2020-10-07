@@ -32,13 +32,13 @@ or
 
 Once the service is started, you can control your AC by calling the following endpoints:
 
-	http://<ip-address>:5000/turnOn
-	http://<ip-address>:5000/turnOff
+	http://<ip-address>:5000/turnOn # or turnon
+	http://<ip-address>:5000/turnOff # or turnoff
 	http://<ip-address>:5000/custom?temperature=25&fan=Silent
 
 Example via curl:
 
-	curl -f http://<ip-address>:5000/turn-on
+	curl -f http://<ip-address>:5000/turnOn
 
 ## How to monitor / debug service
 
@@ -54,6 +54,22 @@ After installation, run the following pytest for integration tests
 
     make run_tests
 
+## How to expose to Internet
+
+Having local control is nice (e.g. for iOS Shortcuts) but it does not work with Google Home or when not being at home.
+Thus, exposing of the server to the Internet is needed. Here an example for how to use `ngrok` for that:
+
+1) Create ngrok account on https://dashboard.ngrok.com/get-started/setup
+2) Modify `/opt/ngrok/ngrok.yml` and add your `authtoken` according to your account
+3) Restart ngrok service via `sudo systemctl restart ngrok` and verify via `sudo systemctl status ngrok` that it is running
+4) Figure out public URL for ngrok service via
+	a) ngrok website (https://dashboard.ngrok.com/status/tunnels)
+	b) by executing `curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[] | select(.name == "http") | .public_url'`
+	c) by requesting http://<ip-address>:5000/getNgrokUrl in the home network
+5) Verify that the service is accessible from Internet by accessing https://223c42a91764.ngrok.io/version
+
+Now you can add e.g. an IFTTT or an iOS shortcut which controls your AC from Google Home or from outside.
+
 ## TODOs
 
 * [] add more documentation for setup
@@ -62,4 +78,5 @@ After installation, run the following pytest for integration tests
 
 Following links were used for inspiration:
 
-TBD
+* ngrok documentation -> https://ngrok.com/docs
+* ifttt -> https://ifttt.com/home

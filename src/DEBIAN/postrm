@@ -5,4 +5,6 @@ set -e
 
 systemctl daemon-reload
 
+#rm -rf /opt/ngrok/
+
 exit 0

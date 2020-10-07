@@ -1,0 +1,13 @@
+authtoken: 7en4BDAY5g5qwa3SN3QU2_3CMNARXHVKKhUjtfKucwo
+json_resolver_url: ""
+dns_resolver_ips: []
+console_ui: false
+log_format: logfmt
+log: /var/log/rpi-ac-control/ngrok.log
+region: us
+web_addr: localhost:4040
+tunnels:
+  http:
+    proto: http
+    addr: 5000
+    inspect: false

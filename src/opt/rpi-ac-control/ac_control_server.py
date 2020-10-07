@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 
+import subprocess
+
 from hvac_ircontrol.ir_sender import LogLevel
 from hvac_ircontrol.mitsubishi import Mitsubishi, ClimateMode, FanMode, VanneVerticalMode, VanneHorizontalMode, ISeeMode, AreaMode, PowerfulMode
 
@@ -14,6 +16,15 @@ class AcControl(Resource):
     def get(self, cmd):
         if cmd == "version":
             return "1.0.0", 200
+
+        if cmd == "getNgrokUrl":
+            logger.info("getting ngrok URL")
+            url = subprocess.run(
+                "curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[] | select(.name == \"http\") | .public_url'", shell=True).stdout
+            if url:
+                return url, 200
+            else:
+                return "ngrok service not running", 500
 
         if cmd == "turnOff" or cmd == "turnoff":
             ac.power_off()

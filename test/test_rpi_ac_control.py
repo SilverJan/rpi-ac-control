@@ -10,6 +10,7 @@ from test_utils.systemd import *
 from test_utils.shell import *
 
 ac_control_service = "ac-control.service"
+ngrok_control_service = "ngrok.service"
 
 
 def test_ac_control_service_enabled_running():
@@ -17,10 +18,16 @@ def test_ac_control_service_enabled_running():
     assert is_service_running(ac_control_service)
 
 
+def test_ngrok_service_enabled_running():
+    assert is_service_enabled(ngrok_control_service)
+    assert is_service_running(ngrok_control_service)
+
+
 def test_ac_control_service_alive():
     (rc, output) = run_in_shell(
         f"curl -f http://0.0.0.0:5000/version")
     assert "1.0.0" in output[0]
+
 
 def test_ac_control_service_exit_works():
     (rc, output) = run_in_shell(
