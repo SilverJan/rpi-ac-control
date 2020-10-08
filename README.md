@@ -32,7 +32,6 @@ The IR emitter should be connected to the Raspberry Pi like that:
 For the circuit, refer to the following explanation:
 
 > Although you can connect an IR LED directly to GPIO pins on the Raspberry Pi, the LED's output signal will be too weak, and the IR transmitter will have a very limited range. A simple transistor circuit solves the problem by amplifying the current output from a pin and thus increasing the IR LED's signal strength. First place your IR LED on the breadboard and wire the long leg(Anode) to 3.3 volts(pin 1) and the long leg(Cathode) to the Emitter of your transistor. Next, run a wire from ground(pin 6) to the collector of your transistor and then use a 10K resistor to connect the base of your transistor to pin 22. </br> </br>
-
 First place your IR LED on the breadboard and wire the long leg (Anode) to 3.3 volts (pin 1) and the long leg (Cathode) to the Emitter of your transistor. Next, run a wire from ground (pin 6) to the collector of your transistor and then use a 10K resistor to connect the base of your transistor to pin 22. Next, place your IR receiver on the breadboard. Run 3.3 Volts to its right leg and connect its center leg to ground. Finally connect pin 23 to the left leg of your IR receiver. 
 
 ### C) Raspberry Pi configuration
