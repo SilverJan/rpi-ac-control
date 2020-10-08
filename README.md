@@ -17,9 +17,9 @@ You need the following hardware:
 
 * A Raspberry Pi (any model will do; I used a Raspberry Pi 2 Model B), installed with Raspbian (Buster Lite))
 * IR Emitter (e.g. 940nm IR LED 40deg - 40 degree viewing angle. Bright and tuned to 940nm wavelength)
-* IR Receiver (e.g. 38khz IR Receiver - Receives IR signals at remote control frequencies)
-* Transistor (e.g. PN2222 Transistor - Transistor to help drive IR LED)
-* Resistor (10k Ohm resistor - Resistor that goes between RPI GPIO and the PN2222 transistor)
+* IR Receiver (e.g. 38khz IR Receiver - receives IR signals at remote control frequencies)
+* Transistor (e.g. PN2222 Transistor - to help drive IR LED)
+* Resistor (10k Ohm resistor - goes between RPI GPIO and the PN2222 transistor)
 * Breadboard for wiring
 * M-F jumper cables
 
@@ -129,15 +129,18 @@ Thus, exposing of the server to the Internet is needed. Here an example for how 
 4) Figure out public URL for ngrok service via
 	* ngrok website (https://dashboard.ngrok.com/status/tunnels)
 	* by executing `curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[] | select(.name == "http") | .public_url'`
-	* by requesting http://<ip-address>:5000/getNgrokUrl in the home network
-5) Verify that the service is accessible from Internet by accessing https://223c42a91764.ngrok.io/version
+	* by requesting [http://<ip-address>:5000/getNgrokUrl](http://<ip-address>:5000/getNgrokUrl) in the home network
+5) Verify that the service is accessible from Internet by accessing e.g. https://223c42a91764.ngrok.io/version
 
 Now you can add e.g. an IFTTT or an iOS shortcut which controls your AC from Google Home or from outside.
 
 ## TODOs
 
-* [] improve logging of hvac_ircontrol (currently suppressed)
+* [] improve circuit to increase the distance (currently only ~30cm distance possible)
 * [] add more endpoints (to control more AC features)
+* [] improve logging of hvac_ircontrol (currently suppressed)
+* [] find alternative to ngrok to have static Internet-exposed endpoint (ngrok public URL changes every reboo)
+* [] find alternative to IFTTT for Google Home control (IFTTT limits requests and works unreliably)
 
 ## 3rd party libraries
 

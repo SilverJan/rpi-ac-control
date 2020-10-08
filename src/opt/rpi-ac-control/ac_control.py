@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# script to control AC via command line
+
 import argparse
 import utils
 import logging

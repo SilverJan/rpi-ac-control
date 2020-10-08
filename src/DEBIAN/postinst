@@ -2,6 +2,7 @@
 set -e
 
 # TODO: Find a way to install this via apt/control
+# Commented out because it takes super long to setup on Raspberry Pi 2
 #pip3 install flask flask_restful
 
 mkdir -p /var/log/rpi-ac-control

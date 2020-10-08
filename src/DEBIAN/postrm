@@ -1,10 +1,12 @@
 #!/bin/bash
 set -e
 
+# TODO: This can be removed if flask can be installed via apt
 #pip3 uninstall -y flask flask_restful
 
 systemctl daemon-reload
 
+# Uncomment if you really want it to be cleaned up
 #rm -rf /opt/ngrok/
 
 exit 0

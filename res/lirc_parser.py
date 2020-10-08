@@ -1,8 +1,15 @@
 import os
 
-# this tool can be used to translate `mode2` output into a lircd.conf
+# this tool can be used to translate `mode2 -d /dev/lirc0 > ~/mode2-recordings/power_on`
+# output into a lircd.conf
+# it prints a lircd.conf file content that can be stored in /etc/lircd/lircd.conf.d/
 
-recording_dir = "/home/bij81sgp/Desktop/recordings"
+# this was developed as part of trying out multiple approaches
+# finally I realized that the `irsend` command is not capable of sending
+# complex, long signals like those of an AC
+# thus, this script is kinda useless :D
+
+recording_dir = "~/mode2-recordings"
 
 conf_file = """# This config file written manually by Jan!
 
@@ -13,6 +20,7 @@ begin remote
   eps     30
   aeps   100
 
+  # these values are most likely wrong
   ptrail   0
   repeat 0 0
   gap 28205
