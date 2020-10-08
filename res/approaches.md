@@ -1,71 +1,12 @@
-# ac-controller
+# Tested Approaches
 
-## Objective
-
-The objective of this repo is to have a working python / bash script / program which allows controlling a Mitsubishi AC (model: xxx)
-
-## Raspberry Pi Setup
-
-### Step 1) Buy right hardware parts
-
-TODO
-
-### Step 2) Connect everything
-
-TODO
-
-### Step 3) Configure raspberry pi
-
-Add the following lines to `/boot/config.txt` at the end of the file (order is important)
-```
-dtoverlay=gpio-ir-tx,gpio_pin=22 # input
-dtoverlay=gpio-ir,gpio_pin=23 # output
-```
-
-Install lirc via 
-```
-sudo apt install lirc
-```
-
-Reboot
-```
-sudo reboot
-```
-
-### Step 4) Verify receiving of signals
-```
-pi@rpi2:~ $ mode2 -d /dev/lirc0
-Using driver default on device /dev/lirc0
-Trying device: /dev/lirc0
-Using device: /dev/lirc0
-# click
-pulse 498
-space 345
-pulse 440
-```
-
-### Step 5) Verify sending of signals
-```
-irdb-get download streamzap/streamzap.lircd.conf 
-cp streamzap.lircd.conf /etc/lirc/lircd.conf.d/
-sudo systemctl restart lircd
-irsend list Streamzap_PC_Remote KEY_0
-irsend send_once Streamzap_PC_Remote KEY_0 # -> check with phone camera, red light should appear
-```
-
-### Hints / Known Issues
-* seems like input pin does not work anymore when output pin is activated in `/boot/config.txt`
-
-
-## Tested Approaches
-
-### Approach 1) Record via lircd `irrecord`
+## Approach 1) Record via lircd `irrecord`
 
 How to: Execute `irrecord` and follow steps. Ideally lircd.conf is created which can be replayed
 
 Actual: `irrecord` seems to not work with AC controllers which transmit the full state of the AC
 
-### Approach 2) Record via `mode2 -d /dev/lircd`
+## Approach 2) Record via `mode2 -d /dev/lircd`
 
 From: 
 
@@ -103,7 +44,7 @@ Steps to try out:
     * e.g. from https://stackoverflow.com/questions/22652156/how-to-use-irrecord-with-2ms-timing-instead-of-the-default-5ms
 * Verify CRC (verification at the end of the signal)
 
-## Approach 3) 
+## Approach 3) Use pigpio and HVAC-IR-Control
 
 From: 
 * https://www.analysir.com/blog/2015/01/06/reverse-engineering-mitsubishi-ac-infrared-protocol/
@@ -139,15 +80,7 @@ python3 ../demo_mitsu.py
 # verify with camera
 ```
 
-Actual: No error while sending, but no reaction at AC.
-
-Possible issues:
-* Wrong signal from repo
-* Too short range for IR sender 
-
-Steps to try out:
-* Go closer to AC (get Wi-Fi adapter for raspi / use raspi 3)
-* Try to decode actual signals (from `mode2`) and compare them with https://github.com/Ericmas001/HVAC-IR-Control/blob/master/Protocol/Mitsubishi_IR_Packet_Data_v1.1-FULL.pdf / log output from `demo_mitsu.py`
+Actual: Works! Yay!
 
 ## Approach 4) Rebuilding of kernel
 

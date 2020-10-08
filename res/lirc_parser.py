@@ -1,5 +1,7 @@
 import os
 
+# this tool can be used to translate `mode2` output into a lircd.conf
+
 recording_dir = "/home/bij81sgp/Desktop/recordings"
 
 conf_file = """# This config file written manually by Jan!
@@ -33,7 +35,7 @@ for file in os.listdir(recording_dir):
                 continue
             else:
                 cleansed_raw_data.append(entry)
-        
+
         x = "           "
         for index, entry in enumerate(cleansed_raw_data):
             if index == 0:
